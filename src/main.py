@@ -163,11 +163,9 @@ def do_recognition(args, recorder, recognizer, player):
 
     actor = action.make_actor(say)
 
-#    if args.cloud_speech:
-#        action.add_commands_just_for_cloud_speech_api(actor, say)
+    if args.cloud_speech:
+        action.add_commands_just_for_cloud_speech_api(actor, say)
 
-    action.add_commands_just_for_cloud_speech_api(actor, say)
-    
 
     recognizer.add_phrases(actor)
     recognizer.set_audio_logging_enabled(args.audio_logging)
