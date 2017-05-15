@@ -227,25 +227,11 @@ def add_commands_just_for_cloud_speech_api(actor, say):
     """Add simple commands that are only used with the Cloud Speech API."""
     def simple_command(keyword, response):
         actor.add_keyword(keyword, SpeakAction(say, response))
-
-    simple_command('alexa', _("We've been friends since we were both starter projects"))
-    simple_command(
-        'beatbox',
-        'pv zk pv pv zk pv zk kz zk pv pv pv zk pv zk zk pzk pzk pvzkpkzvpvzk kkkkkk bsch')
-    simple_command(_('clap'), _('clap clap'))
-    simple_command('google home', _('She taught me everything I know.'))
-    simple_command(_('hello'), _('hello to you too'))
-    simple_command(_('tell me a joke'),
-                   _('What do you call an alligator in a vest? An investigator.'))
-    simple_command(_('three laws of robotics'),
-                   _("""The laws of robotics are
-0: A robot may not injure a human being or, through inaction, allow a human
-being to come to harm.
-1: A robot must obey orders given it by human beings except where such orders
-would conflict with the First Law.
-2: A robot must protect its own existence as long as such protection does not
-conflict with the First or Second Law."""))
-    simple_command(_('where are you from'), _("A galaxy far, far, just kidding. I'm from Seattle."))
-    simple_command(_('your name'), _('A machine has no name'))
-
+    def scmd(keyword, response):
+        simple_command(keyword.strip(), response.strip())
+        print(keyword + " -> " + response)
     actor.add_keyword(_('time'), SpeakTime(say))
+    commandsfile = open("/home/pi/voice-recognizer-raspi/src/commands.txt", "r")
+    for krline in commandsfile.readlines():
+        k, v = krline.split("|")
+        actor.add_keyword(k.strip(), SpeakAction(say, v.strip()))
