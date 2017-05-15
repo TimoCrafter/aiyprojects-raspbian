@@ -220,11 +220,6 @@ def make_actor(say):
     # Makers! Add your own voice commands here.
     # =========================================
 
-    return actor
-
-
-def add_commands_just_for_cloud_speech_api(actor, say):
-    """Add simple commands that are only used with the Cloud Speech API."""
     def simple_command(keyword, response):
         actor.add_keyword(keyword, SpeakAction(say, response))
     def scmd(keyword, response):
@@ -235,3 +230,15 @@ def add_commands_just_for_cloud_speech_api(actor, say):
     for krline in commandsfile.readlines():
         k, v = krline.split("|")
         actor.add_keyword(k.strip(), SpeakAction(say, v.strip()))
+
+
+    return actor
+
+
+def add_commands_just_for_cloud_speech_api(actor, say):
+    """Add simple commands that are only used with the Cloud Speech API."""
+    def simple_command(keyword, response):
+        actor.add_keyword(keyword, SpeakAction(say, response))
+    def scmd(keyword, response):
+        simple_command(keyword.strip(), response.strip())
+        print(keyword + " -> " + response)
