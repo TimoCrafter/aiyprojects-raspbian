@@ -80,7 +80,7 @@ def say(player, words, eq_filter=None, lang='en-US'):
 
     try:
         subprocess.call(['pico2wave', '--lang', lang, '-w', raw_wav, words])
-        subprocess.call(['play', raw_wav])
+        subprocess.call(['play', raw_wav, '--no-show-progress', '--guard'])
     finally:
         os.unlink(raw_wav)
 
