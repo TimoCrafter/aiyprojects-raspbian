@@ -25,7 +25,7 @@ fi
 
 sudo apt-get -y install alsa-utils python3-all-dev python3-pip python3-numpy \
   python3-scipy python3-virtualenv rsync sox libttspico-utils ntpdate
-sudo apt-get -y install -t stretch python3-httplib2 python3-configargparse
+sudo apt-get -y install -t stretch python3-httplib2 python3-configargparse sox
 sudo pip3 install --upgrade pip virtualenv
 
 cd ~/voice-recognizer-raspi
